@@ -3,8 +3,6 @@ const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const register = require('./routes/register');
-const header = require('./routes/header');
-const home = require('./routes/home');
 const exampleRoute = require('./routes/exampleRoute');
 const coffeeorders = require('./routes/coffeeorders');
 const cors = require('cors');
@@ -30,7 +28,6 @@ app.set('view engine', 'hbs');
 app.use('/register', register);
 app.use('/coffeeorders', coffeeorders);
 app.use('/example', exampleRoute); // how a route works. look at the routes/exampleRoute.js 
-app.use('/header', header);
-app.use('/', home);
+
  
 app.listen(3000);
