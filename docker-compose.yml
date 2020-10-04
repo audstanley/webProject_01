@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  web-project1:
+    build:
+      context: .
+      dockerfile: ./.devcontainer/Dockerfile.deploy
+    entrypoint: /code/entrypoint.sh
+    ports:
+      - "32707:3000"

@@ -1,0 +1,12 @@
+// install the "REST Client" extension in VSCode.
+@baseUrl=localhost:3000
+
+# deletes all the orders from the collection
+DELETE http://{{baseUrl}}/coffeeorders HTTP/1.1
+
+###
+
+# only delete jlpicard@starfleet.com's last order
+DELETE http://{{baseUrl}}/coffeeorders/jlpicard@starfleet.com HTTP/1.1
+
+###
