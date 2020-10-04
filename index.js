@@ -32,12 +32,5 @@ app.use('/coffeeorders', coffeeorders);
 app.use('/example', exampleRoute); // how a route works. look at the routes/exampleRoute.js 
 app.use('/header', header);
 app.use('/', home);
-
-
-
-
-
-
-
  
 app.listen(3000);
