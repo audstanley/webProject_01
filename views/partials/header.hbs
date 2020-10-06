@@ -5,7 +5,11 @@
         <p>
             <ul>
                 <li>
-                    <a href="{{SERVER_URL}}/home">Home</a>
+                    {{#if admin}}
+                        <a href="{{SERVER_URL}}/admin">Admin</a>
+                    {{else}}
+                        <a href="{{SERVER_URL}}/home">Home</a>
+                    {{/if}}
                 </li>
                 <li>
                     <a href="{{SERVER_URL}}/register">Register</a>

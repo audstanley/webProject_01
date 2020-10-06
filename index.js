@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const register = require('./routes/register');
+const rootRoute = require('./routes/rootRoute');
 const home = require('./routes/home');
 const admin = require('./routes/admin');
 const deleteRoute = require('./routes/delete');
@@ -32,7 +33,7 @@ app.use(cors({
 
 // if there is a .env file and a SERVER_URL variable in the file (for the site's links), else use localhost:3000.
 app.locals.SERVER_URL = (process.env.PORT)? 
-    `http://localhost:${process.env.PORT || 3000}` 
+    `http://localhost:${process.env.PORT}`
     : process.env.SERVER_URL || `http://localhost:3000`; // how to make global variables that handlebars can use.
 // using the handlebars templating engine
 console.log(`SERVER_URL: ${app.locals.SERVER_URL}`);
@@ -41,7 +42,11 @@ app.engine('hbs', exphbs({
 }));
 app.set('view engine', 'hbs');
 
+// use public folder for custom css.
+app.use(express.static('public'));
+
 // routes that we will create, import, and use in this index.js
+app.use('/', rootRoute);
 app.use('/home', home);
 app.use('/admin', admin);
 app.use('/delete', deleteRoute);

@@ -20,3 +20,20 @@ SERVER_URL=http://localhost:3000
 ```bash
 npm i; npm run start;
 ```
+
+
+### Resources:
+[express](https://www.npmjs.com/package/express)
+
+[handlebars](https://handlebarsjs.com/guide/#simple-expressions)
+
+[diskDb](https://www.npmjs.com/package/diskdb)
+
+[dotenv](https://www.npmjs.com/package/dotenv)
+
+[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+
+[qrcode](https://www.npmjs.com/package/qrcode)
+
+[bitcoin BIP 0021](https://en.bitcoin.it/wiki/BIP_0021)
+

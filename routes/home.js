@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.route('')
     .get((req, res) => {
-        //console.log(`user: ${req.user}`);
         const refreshToken = req.cookies["Authorization: Bearer"];
         db.connect('./data', ['refreshTokens']);
         const tokenFromDb = db.refreshTokens.findOne({ refreshToken: refreshToken});

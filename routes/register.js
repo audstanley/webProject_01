@@ -31,8 +31,9 @@ router.route('')
                     db.users.save({ email: email, firstName: firstName, lastName: lastName, password: password, admin: false });
                 }
                 res.render('register', {
-                    message: 'Created',
-                    messageClass: 'alert-danger'
+                    message: 'Successfully Created',
+                    messageClass: 'alert-danger',
+                    signin: true
                 });
             }
         }

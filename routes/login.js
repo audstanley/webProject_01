@@ -5,9 +5,6 @@ const jwt = require("jsonwebtoken");
 const { generateAccessToken } = require('./auth');
 const db = require('diskdb');
 
-// will change with diskDb.
-let refreshTokens = [];
-
 router.route('')
     .post((req, res) => {
         db.connect('./data', ['refreshTokens', 'users']);
@@ -17,12 +14,11 @@ router.route('')
         const foundUser = db.users.findOne( { email: username, password: password } );
         if (foundUser) {
             //console.log(`found user in db: ${JSON.stringify(foundUser)}`);
-            const accessToken = generateAccessToken(user);
-            const refreshToken = jwt.sign(user, process.env.TOKEN_SECRET);
-            refreshTokens.push(refreshToken);
-            db.refreshTokens.save({ accessToken: accessToken, refreshToken: refreshToken });
+            const refreshToken = generateAccessToken(user);
+            // const refreshToken = jwt.sign(user, process.env.TOKEN_SECRET);
+            console.log(`login - refreshToken: ${refreshToken}`);
+            db.refreshTokens.save({ refreshToken: refreshToken });
             res.cookie('Authorization: Bearer', refreshToken);
-
             if(username == 'audstanley@gmail.com') {
                 res.redirect('/admin');
             } else {
@@ -31,8 +27,6 @@ router.route('')
         } else {
             res.redirect('/home');
         }
-
-        
     });
 
 // here is anouther route that you would find at localhost:3000/example/test

@@ -4,6 +4,9 @@
         {{#if message}}
             <div class="alert {{messageClass}}" role="alert">
                 {{message}}
+                {{#if signin}}
+                    <p><a href="{{SERVER_URL}}/home">sign-in</a></p>
+                {{/if}}
             </div>
         {{/if}}
 

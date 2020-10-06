@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { generateAccessToken } = require('./auth');
 
 // will change with diskDb.
-let refreshTokens = [];
+//let refreshTokens = [];
 
 // setInterval(() => {
 //     console.log(`refreshTokens: ${refreshTokens}`)
@@ -17,7 +17,7 @@ router.route('/login')
         const user = { username: username };
         const accessToken = generateAccessToken(user);
         const refreshToken = jwt.sign(user, process.env.TOKEN_SECRET);
-        refreshTokens.push(refreshToken);
+        //refreshTokens.push(refreshToken);
         res.json({ accessToken: accessToken, refreshToken: refreshToken });
 
     });
@@ -32,9 +32,9 @@ router.route('/')
 
 router.route('/token')
     .post((req, res) => {
-        const refreshToken = req.body.token; 
+        const refreshToken = req.body.token;
         if(refreshToken == null) return res.sendStatus(401);
-        if(!refreshTokens.includes(refreshToken)) res.sendStatus(403);
+        //if(!refreshTokens.includes(refreshToken)) res.sendStatus(403);
         jwt.verify(refreshToken, process.env.TOKEN_SECRET, (err, username) => {
             if(err) return res.sendStatus(403);
             const accessToken = generateAccessToken({ username: username });
