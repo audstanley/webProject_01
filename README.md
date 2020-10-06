@@ -16,6 +16,7 @@ TOKEN_SECRET=d3d5c81129d13b8365ee4eff3a54e5ce1470d1691d985b2b0346288ab759135878b
 SERVER_URL=http://localhost:3000
 ```
 
+### run the application:
 
 ```bash
 npm i; npm run start;
