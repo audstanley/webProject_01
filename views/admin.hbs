@@ -1,0 +1,10 @@
+<div>
+    <h1>
+        ADMIN PAGE
+    </h1>
+    <ul>
+        {{#each deletableUsers}}
+            <li> <a href="{{SERVER_URL}}/delete/{{this._id}}">delete</a> {{this.email}} </li>
+        {{/each}}
+    </ul>
+</div>

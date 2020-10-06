@@ -1,0 +1,50 @@
+<div>
+    {{#if loggedIn}}
+        <h3> Hello {{username}} </h3>
+        
+    {{else}}
+        <div class="row justify-content-md-center" style="margin-top: 30px">
+            <div class="col-md-4">
+
+                {{!-- {{#if message}}
+                    <div class="alert {{messageClass}}" role="alert">
+                        {{message}}
+                    </div>
+                {{/if}} --}}
+                <script>
+                    function myfunction() {
+                        let username = document.getElementById("usernameInput").value;
+                        let password = document.getElementById("passwordInput").value;
+                        $.ajax({
+                            type: "POST",
+                            url: `{{SERVER_URL}}/login`,
+                            dataType: 'json',
+                            async: false,
+                            data: '{"username": "' + username + '", "password" : "' + password + '"}'
+                        });
+                    }
+                </script>
+                <form method="POST" action="/login">
+                    <div class="form-group">
+                        <label for="usernameInput">email</label>
+                        <input name="username" type="text" class="form-control" id="usernameInput">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordInput">password</label>
+                        <input name="password" type="password" class="form-control" id="passwordInput">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" onclick="myFunction()">Login</button>
+                </form>
+
+                {{!-- <h2>
+                    {{cookie}}
+                </h2> --}}
+
+            </div>
+        </div>
+    {{/if}}
+
+</div>
+

@@ -1,0 +1,24 @@
+// install the "REST Client" extension in VSCode.
+@baseUrl=localhost:3000
+
+GET http://{{baseUrl}}/example/
+
+###
+
+POST http://{{baseUrl}}/example/login
+Content-Type: application/json
+
+{
+    "username": "audstanley" 
+}
+
+
+###
+
+POST http://{{baseUrl}}/example/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF1ZHN0YW5sZXkiLCJpYXQiOjE2MDE5MzM1NTB9.EC9TdNtpxm95wWa_TX5qCtWmdOWGTvd2jR61scRRgXc"
+
+}

@@ -9,12 +9,12 @@ router.route('')
         res.render('register');
     })
     .post((req, res) => {
-        console.log(req)
         const { email, firstName, lastName, password, confirmPassword } = req.body;
         // Check if the password and confirm password fields match
         if (password === confirmPassword) {
             db.connect('./data', ['users']);
             const dbUser = db.users.find( { email: email }); // will return an array of users.
+            const numberOfUsers = db.users.find().length;
             console.log(`/register Create User: ${dbUser.length}`);
             console.log(`/register User email: ${email}`);
             // Check if user with the same email is also registered (check the array that there is one user)
@@ -25,7 +25,11 @@ router.route('')
                 });
                 return;
             } else {
-                db.users.save({ email: email, firstName: firstName, lastName: lastName, password: password });
+                if (numberOfUsers == 0) {
+                    db.users.save({ email: email, firstName: firstName, lastName: lastName, password: password, admin: true });
+                } else {
+                    db.users.save({ email: email, firstName: firstName, lastName: lastName, password: password, admin: false });
+                }
                 res.render('register', {
                     message: 'Created',
                     messageClass: 'alert-danger'
