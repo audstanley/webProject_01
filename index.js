@@ -43,7 +43,7 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs');
 
 // use public folder for custom css.
-app.use(express.static('public'));
+app.use('/public', express.static('public'));
 
 // routes that we will create, import, and use in this index.js
 app.use('/', rootRoute);

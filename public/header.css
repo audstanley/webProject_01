@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 3rem;
+    margin-left: 4rem;
+}
+
+.li-header-links {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 1.5rem;
+    margin-left:0.5rem;
+}
