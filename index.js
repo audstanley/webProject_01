@@ -31,7 +31,9 @@ app.use(cors({
 
 
 // if there is a .env file and a SERVER_URL variable in the file (for the site's links), else use localhost:3000.
-app.locals.SERVER_URL = process.env.SERVER_URL || 'http://localhost:3000'; // how to make global variables that handlebars can use.
+app.locals.SERVER_URL = (process.env.PORT)? 
+    `http://localhost:${process.env.PORT || 3000}` 
+    : process.env.SERVER_URL || `http://localhost:3000`; // how to make global variables that handlebars can use.
 // using the handlebars templating engine
 console.log(`SERVER_URL: ${app.locals.SERVER_URL}`);
 app.engine('hbs', exphbs({
@@ -51,4 +53,4 @@ app.use('/example', exampleRoute); // how a route works. look at the routes/exam
 
 
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
