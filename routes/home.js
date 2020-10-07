@@ -7,7 +7,8 @@ const router = express.Router();
 router.route('')
     .get((req, res) => {
         const refreshToken = req.cookies["Authorization: Bearer"];
-        db.connect('./data', ['refreshTokens']);
+        db.connect('./data', ['refreshTokens', 'users']);
+        const allUsers = db.users.find();
         const tokenFromDb = db.refreshTokens.findOne({ refreshToken: refreshToken});
         if(tokenFromDb) {
             jwt.verify(tokenFromDb.refreshToken, process.env.TOKEN_SECRET, (err, decoded) => {
@@ -16,7 +17,7 @@ router.route('')
                     return res.render('home', { loggedIn: false });
                 } else {
                     console.log(`USER VERIFIED ${JSON.stringify(decoded)}`);
-                    return res.render('home', { loggedIn: true, username: decoded.username });
+                    return res.render('home', { loggedIn: true, username: decoded.username, allUsers: allUsers });
                 }
               });
         } else {
