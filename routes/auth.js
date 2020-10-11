@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const db = require('diskdb');
-const { all } = require("./register");
 
 function generateAccessToken({username}) {
     // expires after half and hour (1800 seconds = 30 minutes)
@@ -28,4 +27,37 @@ function deleteExpitedTokens() {
 
 deleteExpitedTokens();
 
-module.exports = { generateAccessToken };
+// middleware that makes sure the user is loggedIn.
+const jwtMiddleware = async (req, res, next) => {
+    db.connect('./data', ['refreshTokens', 'users']);
+    const refreshToken = req.cookies["Authorization: Bearer"];
+    const tokenFromDb = db.refreshTokens.findOne({ refreshToken: refreshToken });
+    if(tokenFromDb) {
+        jwt.verify(tokenFromDb.refreshToken, process.env.TOKEN_SECRET, (err, decoded) => {
+            console.log(err);
+            if (err)  {
+                req.loggedIn = false;
+                next();
+            } else {
+                let user = db.users.findOne( { email: decoded.username } );
+                if (user) {
+                    console.log(`USER LOGGED IN: ${JSON.stringify(user)}`)
+                    req.loggedIn = true;
+                    req.emailAddress = decoded.username;
+                    req.admim = user.admin;
+                    req.firstName = user.firstName;
+                    req.lastName = user.lastName;
+                    req._id = user._id;
+                    req.token  = tokenFromDb.refreshToken;
+                    next();
+                } else {
+                    next();
+                }
+            }
+          });
+    } else {
+        return res.render('home', { loggedIn: false });
+    }
+} 
+
+module.exports = { generateAccessToken, jwtMiddleware };

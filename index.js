@@ -10,6 +10,7 @@ const admin = require('./routes/admin');
 const deleteRoute = require('./routes/delete');
 const login = require('./routes/login');
 const signout = require('./routes/signout');
+const photos = require('./routes/photos');
 const exampleRoute = require('./routes/exampleRoute');
 const cors = require('cors');
 const app = express();
@@ -53,6 +54,7 @@ app.use('/delete', deleteRoute);
 app.use('/register', register);
 app.use('/login', login);
 app.use('/signout', signout);
+app.use('/photos', photos);
 app.use('/example', exampleRoute); // how a route works. look at the routes/exampleRoute.js 
 
 

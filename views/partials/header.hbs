@@ -11,9 +11,12 @@
                         <a href="{{SERVER_URL}}/home">Home</a>
                     {{/if}}
                 </li>
+                {{#if loggedIn}}
+                {{else}}
                 <li class="li-header-links">
                     <a href="{{SERVER_URL}}/register">Register</a>
                 </li>
+                {{/if}}
                 <li class="li-header-links">
                     <a href="{{SERVER_URL}}/signout">Sign-out</a>
                 </li>
