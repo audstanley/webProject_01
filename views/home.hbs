@@ -4,9 +4,65 @@
 
         <p>
             {{#each allUsers}}
-                <p>{{this.firstName}} {{this.lastName}} {{this.email}} {{this._id}}</p>
+                <p>{{this.firstName}} {{this.lastName}} {{this.email}} </p>
+                <h3>
+                    User Id:
+                </h3>
+                    {{this._id}}
             {{/each}}
         </p>
+        <p>
+            <h3>
+                Refresh Token:
+            </h3>
+            {{this.token}}
+        </p>
+
+        <script>
+            $('#imageUploadForm').on('submit',(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                alert(formData);
+
+                $.ajax({
+                    type:'POST',
+                    url: $(this).attr('action'),
+                    data: formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    success:function(data){
+                    console.log("success");
+                        console.log(data);
+                    },
+                    error: function(data){
+                        console.log("error");
+                        console.log(data);
+                    }
+                });
+
+            }));
+
+            $("#ImageBrowse").on("change", function() {
+                $("#imageUploadForm").submit();
+            });
+        </script>
+
+
+        <h3>Upload Photo</h3>
+        {{!-- upload photo button --}}
+        <form method="POST" action="/photos/{{this.token}}" enctype="multipart/form-data">
+            <input type="file" name="document" />
+            <input type="submit" />
+        </form>
+
+        <h3>Uploaded Photos:</h3>
+        <div>
+            {{#each userPhotos}}
+                <p><img src="data:image/jpeg;base64, {{this.b64}}"></p>
+            {{/each}}
+        </div>
+        
         
     {{else}}
         <div class="row justify-content-md-center" style="margin-top: 30px">
@@ -18,7 +74,7 @@
                     </div>
                 {{/if}} --}}
                 <script>
-                    function myfunction() {
+                    function loginAjaxRequest() {
                         let username = document.getElementById("usernameInput").value;
                         let password = document.getElementById("passwordInput").value;
                         $.ajax({
@@ -41,12 +97,8 @@
                         <input name="password" type="password" class="form-control" id="passwordInput">
                     </div>
 
-                    <button type="submit" class="btn btn-primary" onclick="myFunction()">Login</button>
+                    <button type="submit" class="btn btn-primary" onclick="loginAjaxRequest()">Login</button>
                 </form>
-
-                {{!-- <h2>
-                    {{cookie}}
-                </h2> --}}
 
             </div>
         </div>
