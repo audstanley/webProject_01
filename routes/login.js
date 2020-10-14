@@ -9,13 +9,12 @@ router.route('')
     .post((req, res) => {
         db.connect('./data', ['refreshTokens', 'users']);
         const { username, password } = req.body;
-        //console.log(`${username} ${password}`);
+        console.log(`${username} ${password}`);
         const user = { username: username };
         const foundUser = db.users.findOne( { email: username, password: password } );
         if (foundUser) {
-            //console.log(`found user in db: ${JSON.stringify(foundUser)}`);
+            console.log(`found user in db: ${JSON.stringify(foundUser)}`);
             const refreshToken = generateAccessToken(user);
-            // const refreshToken = jwt.sign(user, process.env.TOKEN_SECRET);
             console.log(`login - refreshToken: ${refreshToken}`);
             db.refreshTokens.save({ refreshToken: refreshToken });
             res.cookie('Authorization: Bearer', refreshToken);
