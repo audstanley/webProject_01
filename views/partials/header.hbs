@@ -5,6 +5,9 @@
         <p>
             <ul class="ul-header-links">
                 <li class="li-header-links">
+                    <a href="{{SERVER_URL}}/">Main</a>
+                </li>
+                <li class="li-header-links">
                     {{#if admin}}
                         <a href="{{SERVER_URL}}/admin">Admin</a>
                     {{else}}
@@ -12,14 +15,15 @@
                     {{/if}}
                 </li>
                 {{#if loggedIn}}
+                    <li class="li-header-links">
+                        <a href="{{SERVER_URL}}/signout">Sign-out</a>
+                    </li>
                 {{else}}
-                <li class="li-header-links">
-                    <a href="{{SERVER_URL}}/register">Register</a>
-                </li>
+                    <li class="li-header-links">
+                        <a href="{{SERVER_URL}}/register">Register</a>
+                    </li>
                 {{/if}}
-                <li class="li-header-links">
-                    <a href="{{SERVER_URL}}/signout">Sign-out</a>
-                </li>
+                
             </ul>
         </p>
 </div>
