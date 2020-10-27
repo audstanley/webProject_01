@@ -15,10 +15,10 @@ const exampleRoute = require('./routes/exampleRoute');
 const cors = require('cors');
 const app = express();
 const { backedUpFiles } = require('./fresh');
-backedUpFiles()
+/*backedUpFiles()
     .then(() => {
         console.log(`cleaned up the ./data directory.`);
-    });
+    });*/
 dotenv.config(); // get the .env variables
 
 app.use(express.json());

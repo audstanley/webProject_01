@@ -1,22 +1,23 @@
-<div>
+<div class="homePage">
     {{#if loggedIn}}
-        <h3> Hello {{username}} </h3>
+    <div class="topText">
+        <h3 class="currentUser"> Hello {{username}}</h3>
 
-        <p>
+        <p class="otherUsers">
             {{#each allUsers}}
                 <p>{{this.firstName}} {{this.lastName}} {{this.email}} </p>
-                <h3>
+                <!--<h3>
                     User Id:
                 </h3>
-                    {{this._id}}
+                    {{this._id}}-->
             {{/each}}
         </p>
-        <p>
+        <!--<p>
             <h3>
                 Refresh Token:
             </h3>
             {{this.token}}
-        </p>
+        </p>-->
 
         <script>
             $('#imageUploadForm').on('submit',(function(e) {
@@ -57,9 +58,9 @@
         </form>
 
         <h3>Uploaded Photos:</h3>
-        <div>
+        <div class="photoList">
             {{#each userPhotos}}
-                <p><img src="data:image/jpeg;base64, {{this.b64}}"></p>
+                <p class="photos"><img class="singlePic" src="data:image/jpeg;base64, {{this.b64}}"></p>
             {{/each}}
         </div>
         
@@ -103,6 +104,6 @@
             </div>
         </div>
     {{/if}}
-
+    </div>
 </div>
 

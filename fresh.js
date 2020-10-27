@@ -22,6 +22,6 @@ let backedUpFiles = async () => {
 };
 
 // comment out backedUpFiles, if you don't want to restore from the backed up files directory
-backedUpFiles();
+//backedUpFiles();
 
 module.exports = { backedUpFiles };
