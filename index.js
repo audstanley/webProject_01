@@ -11,6 +11,7 @@ const deleteRoute = require('./routes/delete');
 const login = require('./routes/login');
 const signout = require('./routes/signout');
 const photos = require('./routes/photos');
+const allPhotos = require('./routes/allPhotos');
 const exampleRoute = require('./routes/exampleRoute');
 const cors = require('cors');
 const app = express();
@@ -47,7 +48,7 @@ app.set('view engine', 'hbs');
 app.use('/public', express.static('public'));
 
 // routes that we will create, import, and use in this index.js
-app.use('/', rootRoute);
+app.use('/', allPhotos);
 app.use('/home', home);
 app.use('/admin', admin);
 app.use('/delete', deleteRoute);
@@ -55,9 +56,7 @@ app.use('/register', register);
 app.use('/login', login);
 app.use('/signout', signout);
 app.use('/photos', photos);
+app.use('/allPhotos', allPhotos);
 app.use('/example', exampleRoute); // how a route works. look at the routes/exampleRoute.js 
-
-
-
 
 app.listen(process.env.PORT || 3000);

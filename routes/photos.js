@@ -15,7 +15,7 @@ router.post('/:token', (req, res) => { // this route will get ALLof the photos f
             db.connect('./data', ['photos']);
             new formidable.IncomingForm().parse(req)
                 .on('file', async (name, file) => {
-                    console.log(`${file}`)
+                    console.log(`${file}`);
                     const data = fs.readFile(file.path);
                     const b64 = (await data).toString('base64');
                     await fs.unlink(file.path);

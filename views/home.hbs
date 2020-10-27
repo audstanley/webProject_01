@@ -1,21 +1,33 @@
 <div>
     {{#if loggedIn}}
-        <h3> Hello {{username}} </h3>
-
+        {{!-- <h3> Hello {{username}} </h3> --}}
         <p>
             {{#each allUsers}}
-                <p>{{this.firstName}} {{this.lastName}} {{this.email}} </p>
-                <h3>
-                    User Id:
-                </h3>
-                    {{this._id}}
+                <div id="allUsers">
+                    <h3>{{this.firstName}} {{this.lastName}}</h3>
+                    <div id="email">
+                        {{this.email}}
+                    </div>
+                    <h4>
+                        User Id:
+                    </h4>
+                    <div id="_id">
+                        {{this._id}}
+                    </div>
+                </div>
             {{/each}}
         </p>
         <p>
-            <h3>
-                Refresh Token:
-            </h3>
-            {{this.token}}
+            <div id="refreshTokenWrapper">
+                <div id="refreshToken">
+                    <h3>
+                    Refresh Token:
+                    </h3>  
+                </div>
+                <div id="token">
+                    {{this.token}}
+                </div>
+            </div>
         </p>
 
         <script>
@@ -48,20 +60,24 @@
             });
         </script>
 
-
-        <h3>Upload Photo</h3>
-        {{!-- upload photo button --}}
-        <form method="POST" action="/photos/{{this.token}}" enctype="multipart/form-data">
-            <input type="file" name="document" />
-            <input type="submit" />
-        </form>
-
-        <h3>Uploaded Photos:</h3>
-        <div>
-            {{#each userPhotos}}
-                <p><img src="data:image/jpeg;base64, {{this.b64}}"></p>
-            {{/each}}
+        <div id="uploadPhoto">
+            <h3>Upload Photo</h3>
+            {{!-- upload photo button --}}
+            <form method="POST" action="/photos/{{this.token}}" enctype="multipart/form-data">
+                <input type="file" name="document" />
+                <input type="submit" />
+            </form>
         </div>
+
+        <h3>Uploaded Photos:</h3>   
+        {{#each userPhotos}}
+            <div class="uploadedPhotos">
+                <img src="data:image/jpeg;base64, {{this.b64}}">
+            </div>
+        {{/each}}
+            
+        
+        
         
         
     {{else}}

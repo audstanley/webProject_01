@@ -1,0 +1,61 @@
+#refreshTokenWrapper {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+#refreshToken {
+    display: flex;
+    flex: 3;
+    justify-content: flex-start;
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+#refreshToken > h3 {
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+#allUsers {
+    flex: auto;
+    justify-content: flex-start;
+    font-size: 0.8rem;
+}
+
+#token {
+    flex: 10;
+    justify-content: flex-start;
+    overflow-wrap: break-word;
+    margin-left: 1rem;
+    align-items: center;
+    order: 2;
+    font-size: 0.8rem;
+    width: 20%;
+}
+
+#email {
+    margin-left: 1rem;
+}
+
+#_id {
+    margin-left: 1rem;
+}
+
+#uploadPhoto {
+    background-color: gainsboro;
+    padding: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow:         3px 3px 5px 6px #ccc;
+    border-radius: 0.4rem;
+}
+
+.uploadedPhotos {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    box-shadow:         3px 3px 5px 6px #ccc;
+    border-radius: 0.4rem;
+}

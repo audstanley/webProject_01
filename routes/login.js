@@ -18,11 +18,7 @@ router.route('')
             console.log(`login - refreshToken: ${refreshToken}`);
             db.refreshTokens.save({ refreshToken: refreshToken });
             res.cookie('Authorization: Bearer', refreshToken);
-            if(username == 'audstanley@gmail.com') {
-                res.redirect('/admin');
-            } else {
-                res.redirect('/home');
-            }
+            res.redirect('/home');
         } else {
             res.redirect('/home');
         }
