@@ -1,0 +1,11 @@
+
+{{#each allPhotos}}
+    <div id="allPhotos"> 
+        <div id="qrPhoto">
+            <img src="{{ this.qr }}" style="width:80px;" >
+        </div>
+        <div id="photosList">
+            <p><img src="data:image/jpeg;base64, {{this.b64}}"></p>
+        </div>
+    </div>
+{{/each}}

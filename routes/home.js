@@ -12,14 +12,21 @@ router.get('', (req, res) => {
             db.connect('./data', ['users', 'photos']);
             const allUsers = db.users.find( { email: req.emailAddress });
             const userPhotos = db.photos.find( { email: req.emailAddress } );
-            return res.render('home', { 
-                loggedIn: true, 
-                username: req.emailAddress, 
-                allUsers: allUsers,
-                userPhotos: userPhotos,
-                _id: req._id,
-                token: req.token
-            });
+            console.log(`admin: ${req.admin}`);
+            if (req.admin) {
+                res.redirect('/admin');
+            } else {
+                return res.render('home', { 
+                    loggedIn: true,
+                    admin: req.admin,
+                    username: req.emailAddress, 
+                    allUsers: allUsers,
+                    userPhotos: userPhotos,
+                    _id: req._id,
+                    token: req.token
+                });
+            }
+            
         } else {
             return res.render('home', { loggedIn: false });
         }

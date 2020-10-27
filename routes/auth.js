@@ -41,10 +41,10 @@ const jwtMiddleware = async (req, res, next) => {
             } else {
                 let user = db.users.findOne( { email: decoded.username } );
                 if (user) {
-                    console.log(`USER LOGGED IN: ${JSON.stringify(user)}`)
+                    console.log(`USER LOGGED IN: ${JSON.stringify(user)}`);
                     req.loggedIn = true;
                     req.emailAddress = decoded.username;
-                    req.admim = user.admin;
+                    req.admin = user.admin;
                     req.firstName = user.firstName;
                     req.lastName = user.lastName;
                     req._id = user._id;
@@ -58,6 +58,6 @@ const jwtMiddleware = async (req, res, next) => {
     } else {
         return res.render('home', { loggedIn: false });
     }
-} 
+};
 
 module.exports = { generateAccessToken, jwtMiddleware };
