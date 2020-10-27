@@ -1,10 +1,23 @@
+{{!  class definitions can be found in admin.css  }}
+
+{{!  The titles below header   }}
 <div>
-    <h1>
+    <h1 class="admin1">
         ADMIN PAGE
     </h1>
-    <ul>
-        {{#each deletableUsers}}
-            <li> <a href="{{SERVER_URL}}/delete/{{this._id}}">delete</a> {{this.email}} </li>
-        {{/each}}
-    </ul>
+
+    <h2 class="admin2">
+        Existing accounts below, press delete to remove account:
+    </h2>
 </div>
+
+{{!   The account table with delete option   }}
+        {{#each deletableUsers}}
+        <div class="list-group-item">
+            <a href="{{SERVER_URL}}/delete/{{this._id}}" style="color: red;">delete</a>
+            <div class="email">
+                {{this.email}}
+            </div>
+             
+        </div>
+        {{/each}}
