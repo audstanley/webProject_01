@@ -3,8 +3,11 @@
 This is for out web-front-end course
 
 > Collin Campbell
+
 > Dylan Connors
+
 > Chase Huante
+
 > Richard Stanley
 
 ### run the application:
